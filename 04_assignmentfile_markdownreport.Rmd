@@ -1,6 +1,6 @@
 ---
 title: "GW Assignment - Biden Transition"
-author: "YOUR NAME HERE"
+author: "Eleanor Palmer"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: html_document
 ---
@@ -36,6 +36,23 @@ Below write code to show the new names added to the agency review team lists sin
 
 ```{r, echo=FALSE}
 
+newnames %>%
+  
+  gt() %>%
+  tab_header(
+    title = "New Names from the Agency Review Team"
+  ) %>%
+  cols_label(
+    name = "Name",
+    agency = "Agency",
+    on_multiple_teams = "On Multiple Teams", 
+    source_of_funding = "Source Of Funding",
+    most_recent_employment = "Most Recent Employment"
+  )%>%
+  cols_hide(
+    columns = vars(
+      team_lead, idstring, namestring)
+  )
 
 
  
