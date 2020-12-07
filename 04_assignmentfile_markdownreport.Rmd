@@ -102,10 +102,16 @@ Show the top **smallest** agency review teams as of today - which we'll define h
 
 ```{r, echo=FALSE}
 
-
-
-
- 
+agencycount_current %>%
+  arrange(current_count) %>%
+    top_n(n = -5) %>%
+  gt() %>%
+  tab_header(
+    title = "Today's Top 5 Smallest Agency Review Teams: 12/7/20"
+  ) %>%
+  cols_label(
+    agency = "Agency",
+    current_count = "Current Count")
 
 ```
 
@@ -122,9 +128,20 @@ Below write code to show the new names added to the senior staff lists since the
 
 ```{r, echo=FALSE}
 
+newstaff_names%>%
+  gt() %>%
+  tab_header(
+    title = "New Names From Senior Staff Lists"
+  ) %>%
+  cols_label(
+    name = "Name",
+    title = "Title"
+    ) %>%
+  cols_hide(
+    columns = vars(
+      link, idstring)
+    )
 
-
- 
 
 ```
 
@@ -137,7 +154,20 @@ Add code to show the total number of people currently named to the WH senior sta
 ```{r, echo=FALSE}
 
 
+stafftotal_current <- staff_data_current %>%
+  tally(n= "Total People Currently Named to WH Senior Staff")
 
 
+stafftotal_previous <- staff_data_previous %>%
+  tally(n = "Total People Previously Named to WH Senior Staff")
+
+staffcountcompare <- merge(stafftotal_current, staff_previous, all=TRUE)
+staffcountcompare
+
+staffcountcompare %>%
+  gt() %>%
+  tab_header(
+    title = "Total People Currently Named to Senior Staff vs. Previous Count"
+  )
 
 ```
