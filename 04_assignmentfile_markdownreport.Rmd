@@ -161,7 +161,7 @@ stafftotal_current <- staff_data_current %>%
 stafftotal_previous <- staff_data_previous %>%
   tally(n = "Total People Previously Named to WH Senior Staff")
 
-staffcountcompare <- merge(stafftotal_current, staff_previous, all=TRUE)
+staffcountcompare <- merge(stafftotal_current, stafftotal_previous, all=TRUE)
 staffcountcompare
 
 staffcountcompare %>%
