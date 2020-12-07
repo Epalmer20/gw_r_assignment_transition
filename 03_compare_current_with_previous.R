@@ -41,13 +41,13 @@ newnames
 
 # There are 11 new names
 
-title_count_current <- staff_data_scraped %>% 
+titlecount_current <- staff_data_current %>% 
   count(title, name = "current_count")
 
-title_count_previous <- staff_data_archived_2020_11_24t14_00 %>% 
+titlecount_previous <- staff_data_previous %>% 
   count(title, name = "previous_count")
 
-title_count_compare <- left_join(title_count_current, title_count_previous, by = "title")
+titlecount_compare <- left_join(titlecount_current, titlecount_previous, by = "title")
 
 
 #### AGENCY TEAMS ##### --------------------------------------------------------
