@@ -35,9 +35,9 @@ staff_data_current
 staff_data_previous <- readRDS("archived_data/staff_data_archived_2020_11_24t14_00.rds")
 staff_data_previous
 
-newnames <- anti_join(staff_data_current, staff_data_previous, by = "idstring")
+newstaff_names <- anti_join(staff_data_current, staff_data_previous, by = "idstring")
 
-newnames
+
 
 # There are 11 new names
 
