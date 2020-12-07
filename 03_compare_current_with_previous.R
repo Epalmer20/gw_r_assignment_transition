@@ -27,12 +27,27 @@ source("02_scrape_nominees.R")
 
 # YOUR CODE
 
+#load current data from biden website
+staff_data_current <- readRDS("processed_data/staff_data_scraped.rds")
+staff_data_current 
 
+#load archived data
+staff_data_previous <- readRDS("archived_data/staff_data_archived_2020_11_24t14_00.rds")
+staff_data_previous
 
+newnames <- anti_join(staff_data_current, staff_data_previous, by = "idstring")
 
+newnames
 
+# There are 11 new names
 
+title_count_current <- staff_data_scraped %>% 
+  count(title, name = "current_count")
 
+title_count_previous <- staff_data_archived_2020_11_24t14_00 %>% 
+  count(title, name = "previous_count")
+
+title_count_compare <- left_join(title_count_current, title_count_previous, by = "title")
 
 
 #### AGENCY TEAMS ##### --------------------------------------------------------
