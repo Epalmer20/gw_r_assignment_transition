@@ -37,7 +37,6 @@ Below write code to show the new names added to the agency review team lists sin
 ```{r, echo=FALSE}
 
 newnames %>%
-  
   gt() %>%
   tab_header(
     title = "New Names from the Agency Review Team"
@@ -54,9 +53,6 @@ newnames %>%
       team_lead, idstring, namestring)
   )
 
-
- 
-
 ```
 
 
@@ -67,9 +63,18 @@ Add data to show the total number of people appointed to each agency team, along
 
 ```{r, echo=FALSE}
 
-
-
-
+agencycount_compare %>%
+  filter(change > 0)%>%
+  gt() %>%
+  tab_header(
+    title = "Total People Appointed to Each Agency Team & Change from Previous"
+  ) %>%
+    cols_label(
+      agency = "Agency",
+      current_count = "Current Count",
+      previous_count = "Previous Count",
+      change = "Change"
+    )
 
 ```
 
@@ -80,10 +85,16 @@ Show the top 10 **largest** agency review teams as of today:
 
 ```{r, echo=FALSE}
 
-
-
-
-
+agencycount_current %>%
+  arrange(desc(current_count)) %>%
+  top_n(n = 10) %>%
+  gt() %>%
+  tab_header(
+    title = "Today's Top 10 Largest Agency Review Teams: 12/7/20"
+  ) %>%
+  cols_label(
+    agency = "Agency",
+    current_count = "Current Count")
 
 ```
 
